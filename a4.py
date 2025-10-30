@@ -62,11 +62,17 @@ class TTTBoard:
         Return:
             True if the player has won, False otherwise
         """
-        pass
-
+        winning_combos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,5,6]]
+        
+        for combo in winning_combos:
+            if self.board[combo[0]] == player and self.board[combo[1]] == player and self.board[combo[2]] == player:
+                return True
+        return False
+    
     def game_over(self):
         """Check if the game is over (someone has won or the board is full)"""
         return self.has_won("X") or self.has_won("O") or '*' not in self.board
+   
     def has_won(self, player):
         """Check if the player has won
         
@@ -81,6 +87,10 @@ class TTTBoard:
     def game_over(self):
         """Check if the game is over (someone has won or the board is full)"""
         return self.has_won("X") or self.has_won("O") or '*' not in self.board
+
+    def clear(self):
+        """Clear the board for a new game"""
+        self.board = ['*'] * 9
 
 def play_tic_tac_toe() -> None:
     """Uses your class to play TicTacToe"""
